@@ -11,14 +11,17 @@ public class FolderSizeCalculator extends RecursiveTask<Long> {
     @Override
     protected Long compute() {
         File folder = node.getFolder();
+
         if (folder.isFile()){
             long length = folder.length();
             node.setSize(length);
             return length;
         }
+
         long sum = 0;
         List<FolderSizeCalculator> subTasks = new LinkedList<>();
         File[] files = folder.listFiles();
+
         for (File file : files){
             Node child = new Node(file);
             FolderSizeCalculator task = new FolderSizeCalculator(child);

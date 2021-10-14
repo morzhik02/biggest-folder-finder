@@ -6,13 +6,23 @@ public class Node {
     private File folder;
     private ArrayList<Node> children;
     private static char[] sizeMultipliers = {'B', 'K', 'M', 'G', 'T'};
-    private int level = 0;
-
+    private int level;
     private long size;
+    private long limit;
+
+    public Node(File folder, long limit){
+        this(folder);
+        this.limit = limit;
+    }
 
     public Node(File folder){
         this.folder = folder;
         children = new ArrayList<>();
+    }
+
+
+    private long setLimit(long limit){
+        return limit;
     }
 
     public File getFolder(){
@@ -20,9 +30,10 @@ public class Node {
     }
     public void addChild(Node node){
         node.setLevel(level + 1);
+        node.setLimit(limit);
         children.add(node);
-
     }
+
 
     private void setLevel(int level) {
         this.level = level;
@@ -41,15 +52,16 @@ public class Node {
     }
 
     public String toString(){
-        //String size = SizeCalculator.getHumanReadableSize(getSize());
         StringBuilder builder = new StringBuilder();
         String size = SizeCalculator.getHumanReadableSize(getSize());
         builder.append(folder.getName() + " - " + size + "\n");
         for (Node child : children){
-            builder.append("  " + child.toString());
+            if (child.getSize() < limit){
+                continue;
+            }
+            builder.append("  ".repeat(level + 1) + child.toString());
         }
         return builder.toString();
     }
 
 }
-

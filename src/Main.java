@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        String folderPath = "D:\\Desktop\\Files";
+//        String folderPath = "D:\\Desktop\\File";
 //        File file = new File(folderPath);
 //        System.out.println(getFolderSize(file));
 
@@ -16,7 +16,17 @@ public class Main {
 //        myThread.start();
 //        myThread2.start();
 
+//        for (int i = 0; i <args.length; i++){
+//            System.out.println(i + " => " + args[i]);
+//        }
+//        System.exit(0);
+//        String[] argums = {"-d", "D:\\Desktop", "-l", "54G"};
+//        ParametersBag bag = new ParametersBag(argums);
         String folderPath = "D:\\Desktop\\Files";
+       // long sizeLimit = 2 * 1024*1024;
+//        String folderPath = bag.getPath();
+//        long sizeLimit = bag.getLimit();
+
         File file = new File(folderPath);
         Node root = new Node(file);
         long start = System.currentTimeMillis();
@@ -33,12 +43,9 @@ public class Main {
         //System.out.println(getHumanReadableSize(240640));
     }
 
-
-
-
     public static long getFolderSize(File folder){
         if (folder.isFile()){
-            return folder.length();
+             return folder.length();
         }
         long sum = 0;
         File[] files = folder.listFiles();

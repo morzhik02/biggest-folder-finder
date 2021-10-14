@@ -32,6 +32,7 @@ public class SizeCalculator {
     }
 
     private static HashMap<Character, Integer> getMultipliers(){
+
         for (int i = 0; i < sizeMultipliers.length; i++){
             char2Multiplier.put(sizeMultipliers[i], (int) Math.pow(1024, i));
         }
