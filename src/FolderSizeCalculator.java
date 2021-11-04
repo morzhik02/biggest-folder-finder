@@ -8,6 +8,7 @@ public class FolderSizeCalculator extends RecursiveTask<Long> {
     public FolderSizeCalculator(Node node){
         this.node = node;
     }
+
     @Override
     protected Long compute() {
         File folder = node.getFolder();

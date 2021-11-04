@@ -20,7 +20,6 @@ public class Node {
         children = new ArrayList<>();
     }
 
-
     private long setLimit(long limit){
         return limit;
     }
@@ -33,7 +32,6 @@ public class Node {
         node.setLimit(limit);
         children.add(node);
     }
-
 
     private void setLevel(int level) {
         this.level = level;
